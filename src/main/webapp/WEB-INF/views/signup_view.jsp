@@ -25,7 +25,7 @@
 	
 </head>
 <body>
-	<form href="signup" method="get">
+	<form action="signup" method="get">
 	
 		id<input type="text" name="id">
 		pw<input type="text" name="pw">

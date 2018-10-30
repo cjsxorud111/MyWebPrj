@@ -20,7 +20,7 @@ public class BSignupCommand implements BCommand {
 				(HttpServletRequest) map.get("request");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		
+		System.out.println("¤¤¤§¤¼¼î");
 		BDao dao = new BDao();
 		dao.signup(id, pw);
 	}

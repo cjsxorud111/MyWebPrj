@@ -36,18 +36,18 @@
 		<beans:property name="dataSource" ref="dataSource"/>
 	</beans:bean>
 	
-	<beans:bean name="dao" class="com.javalec.spring_mybatis.dao.ContentDao">
+	<beans:bean name="dao" class="com.mycompany.mywebprj.dao.BDao">
 		<beans:property name="template" ref="template"></beans:property>
-	</beans:bean>
+	</beans:bean> 
 	
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"></beans:property>
-		<beans:property name="mapperLocations" value="classpath:com/javalec/spring_mybatis/dao/mapper/*.xml"></beans:property>
+		<beans:property name="mapperLocations" value="classpath:com/mycompany/mywebprj/dao/mapper/*.xml"></beans:property>
 	</beans:bean>
 	
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
-	</beans:bean>
+	</beans:bean> 
 	
 	
 </beans:beans>

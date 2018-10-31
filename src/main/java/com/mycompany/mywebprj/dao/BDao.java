@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 
@@ -14,10 +15,14 @@ public class BDao {
 	
 	JdbcTemplate template;
 	
+	@Autowired
+	public void setTemplate(JdbcTemplate template) {
+		this.template = template;
+	}
+	
 	public BDao() {
 		this.template = Constant.template;
 	}
-	
 	
 	public void signup(final String id, final String pw) {
 		System.out.println("ddc11112c");

@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -95,6 +97,16 @@ public class HomeController {
 	@RequestMapping("/login_view")
 	public String login_view(Model model) {
 		return "login_view";
+	}
+	
+	@RequestMapping("/login")
+	public String login(HttpServletRequest request, Model model) {
+		IDao dao = sqlSession.getMapper(IDao.class);
+		System.out.println("¼º°ø00");
+		model.addAttribute("login", dao.login(request.getParameter("id"), request.getParameter("PW")));
+		
+		System.out.println();
+		return "main_view";
 	}
 	
 	

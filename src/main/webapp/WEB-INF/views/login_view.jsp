@@ -9,8 +9,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	cxasdfㅁㄴㅇㄹㅇㄴㅇㄴㅇㄴ
-	<title>Insert title heredkdkdk</title>
+	
+	<title>Login</title>
 	     
 	<script
 	  src="https://code.jquery.com/jquery-3.3.1.js"
@@ -25,9 +25,9 @@
 	
 </head>
 <body>
-	<form href="" method="get">
-		<input type="text" name="id" value="아이디">
-		<input type="text" name="pw" value="패스워드">
+	<form action="login" method="get">
+		id<input type="text" name="id">
+		pw<input type="text" name="pw">
 		<input type="submit" value="로그인">
 	</form>
 </body>

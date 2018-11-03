@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.*"%>
 <% String cp = request.getContextPath(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,6 +46,16 @@
     <a class="nav-link disabled" href="#">Disabled</a>
   </li>
 </ul>
+<c:set var="dto" items="${login}"/>
+
+	<p>${dto.id}</p>
+
+<c:forEach items="${login}" var="dto">
+	<p>${dto.id}</p>님 환영합니다.
+	
+</c:forEach>
+	
+	
 
 </body>
 </html>

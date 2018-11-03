@@ -22,6 +22,7 @@ import com.mycompany.mywebprj.command.BCommand;
 import com.mycompany.mywebprj.command.BSignupCommand;
 import com.mycompany.mywebprj.dao.BDao;
 import com.mycompany.mywebprj.dao.IDao;
+import com.mycompany.mywebprj.dto.BDto;
 import com.mycompany.mywebprj.util.Constant;
 
 /**
@@ -106,6 +107,7 @@ public class HomeController {
 		model.addAttribute("login", dao.login(request.getParameter("id"), request.getParameter("PW")));
 		
 		System.out.println();
+		
 		return "main_view";
 	}
 	

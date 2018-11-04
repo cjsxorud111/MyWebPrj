@@ -1,6 +1,7 @@
 package com.mycompany.mywebprj;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -23,6 +24,7 @@ import com.mycompany.mywebprj.command.BSignupCommand;
 import com.mycompany.mywebprj.dao.BDao;
 import com.mycompany.mywebprj.dao.IDao;
 import com.mycompany.mywebprj.dto.BDto;
+import com.mycompany.mywebprj.dto.IdDto;
 import com.mycompany.mywebprj.util.Constant;
 
 /**
@@ -102,14 +104,52 @@ public class HomeController {
 	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, Model model) {
-		IDao dao = sqlSession.getMapper(IDao.class);
-		System.out.println("¼º°ø00");
-		model.addAttribute("login", dao.login(request.getParameter("id"), request.getParameter("PW")));
+		System.out.println("0");
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
 		
-		System.out.println();
+		IDao dao = sqlSession.getMapper(IDao.class); //IDaoÇü dao
 		
-		return "main_view";
+		IdDto iddto = null;
+		model.addAttribute("gid", dao.getid());
+		ArrayList<IdDto> iddtoAdress = dao.getid(); 
+		int a = 0;
+		for (int i = 0; i < iddtoAdress.size(); i++) {
+			iddto = iddtoAdress.get(i);
+			System.out.println(iddto.getId());
+			String gid = iddto.getId();
+			if (gid.equals(id)) {
+				a++;
+			}
+		}
+		System.out.println(a);
+		if (a==0) {
+			return "login_view";
+		}
+		
+		model.addAttribute("login", dao.login(id, pw));
+		ArrayList<BDto> dtoAdress = dao.login(id, pw); 
+		
+		
+		
+		System.out.println("2");
+		BDto dto = null;
+		System.out.println("3");
+		
+		
+		for (int i = 0; i < dtoAdress.size(); i++) {
+			System.out.println(dtoAdress.get(i)); 
+			dto = dtoAdress.get(i);
+			System.out.println("4");
+		}
+		System.out.println(dto.getId());
+		System.out.println("5");
+		String dtoPw = dto.getPw();
+		System.out.println("6");
+		if (pw.equals(dtoPw)) {
+			return "main_view";
+		}else{
+			return "login_view";
+		}
 	}
-	
-	
 }

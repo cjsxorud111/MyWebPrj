@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 
+import com.mycompany.mywebprj.dto.BDto;
 import com.mycompany.mywebprj.util.Constant;
 
 
@@ -22,6 +23,7 @@ public class BDao {
 	
 	public BDao() {
 		this.template = Constant.template;
+		
 	}
 	
 	public void signup(final String id, final String pw) {
@@ -38,6 +40,7 @@ public class BDao {
 				pstmt.setString(1, id);
 				pstmt.setString(2, pw);
 				System.out.println("dd4444444c");
+			
 				return pstmt;
 			}
 		});

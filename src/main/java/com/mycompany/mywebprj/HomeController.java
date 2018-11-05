@@ -24,6 +24,7 @@ import com.mycompany.mywebprj.command.BSignupCommand;
 import com.mycompany.mywebprj.dao.BDao;
 import com.mycompany.mywebprj.dao.IDao;
 import com.mycompany.mywebprj.dto.BDto;
+import com.mycompany.mywebprj.dto.ContentDto;
 import com.mycompany.mywebprj.dto.IdDto;
 import com.mycompany.mywebprj.util.Constant;
 
@@ -34,18 +35,9 @@ import com.mycompany.mywebprj.util.Constant;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	
-	/*BDao dao;*/
+
 	@Autowired
 	private SqlSession sqlSession;
-	
-	/*@Autowired
-	public void setDao(BDao dao) {
-		this.dao = dao;
-	}*/
-	
-	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -61,16 +53,6 @@ public class HomeController {
 		return "home";
 	}
 	
-	/*BCommand command = null;
-	public JdbcTemplate template;*/
-	
-	/*@Autowired
-	public void setTemplate(JdbcTemplate template) {
-		this.template = template;
-		Constant.template = this.template;
-	}*/
-	
-	
 	@RequestMapping("/main_view")
 	public String main_view(Model model) {
 		return "main_view";
@@ -78,22 +60,15 @@ public class HomeController {
 	
 	@RequestMapping("/signup_view")
 	public String signup_view(Model model) {
-		
 		return "signup_view";
 	}
+	
 	@RequestMapping("/signup")
 	public String signup(HttpServletRequest request, Model model) {
-		System.out.println("signup()11");
-		System.out.println("signu2");
-		/*command = new BSignupCommand();*/
-		
 		IDao dao = sqlSession.getMapper(IDao.class);
-		System.out.println("signup()22");
 		
 		dao.signup(request.getParameter("id"),request.getParameter("pw"));
-		System.out.println("signup()33");
-		/*model.addAttribute("request", request);*/
-		/*command.execute(model);*/
+
 		return "redirect:main_view";
 	}
 	
@@ -105,12 +80,13 @@ public class HomeController {
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, Model model) {
 		System.out.println("0");
+		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
-		IDao dao = sqlSession.getMapper(IDao.class); //IDaoÇü dao
-		
+		IDao dao = sqlSession.getMapper(IDao.class);
 		IdDto iddto = null;
+		
 		model.addAttribute("gid", dao.getid());
 		ArrayList<IdDto> iddtoAdress = dao.getid(); 
 		int a = 0;
@@ -130,12 +106,9 @@ public class HomeController {
 		model.addAttribute("login", dao.login(id, pw));
 		ArrayList<BDto> dtoAdress = dao.login(id, pw); 
 		
-		
-		
 		System.out.println("2");
 		BDto dto = null;
 		System.out.println("3");
-		
 		
 		for (int i = 0; i < dtoAdress.size(); i++) {
 			System.out.println(dtoAdress.get(i)); 
@@ -151,5 +124,47 @@ public class HomeController {
 		}else{
 			return "login_view";
 		}
+	}
+	
+	@RequestMapping("/board_view")
+	public String board_view(Model model) {
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		ArrayList<ContentDto> dtos = dao.list();
+		model.addAttribute("list", dao.list());
+		return "/board_view";
+	}
+	
+	@RequestMapping("/write_view")
+	public String write_view(Model model) {	
+		return "/write_view";
+	}
+	
+	@RequestMapping("/write")
+	public String write(HttpServletRequest request, Model model) {
+		IDao dao = sqlSession.getMapper(IDao.class);
+		System.out.println("11??");
+		dao.write(request.getParameter("Writer"), request.getParameter("Title"), request.getParameter("Content"));
+		System.out.println("22??");
+		return "redirect:board_view";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request, Model model) {
+		IDao dao = sqlSession.getMapper(IDao.class);
+		dao.delete();
+		return "/board_view";
+	}
+	
+	@RequestMapping("/content_view")
+	public String content_view(HttpServletRequest request, Model model) {
+		IDao dao = sqlSession.getMapper(IDao.class);
+		ContentDto dto = null;
+		model.addAttribute("list", request.getParameter("num"));
+		
+		
+		
+		
+		return "/content_view";
 	}
 }

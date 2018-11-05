@@ -26,7 +26,6 @@
 </head>
 <body>
 	<form action="signup" method="get">
-	
 		id<input type="text" name="id">
 		pw<input type="text" name="pw">
 		<input type="submit" value="회원가입">

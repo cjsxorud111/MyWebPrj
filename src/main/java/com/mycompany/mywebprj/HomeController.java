@@ -55,6 +55,7 @@ public class HomeController {
 	
 	@RequestMapping("/main_view")
 	public String main_view(Model model) {
+		System.out.println("dd");
 		return "main_view";
 	}
 	

@@ -61,11 +61,13 @@ public class HomeController {
 	
 	@RequestMapping("/signup_view")
 	public String signup_view(Model model) {
+		System.out.println("dd");
 		return "signup_view";
 	}
 	
 	@RequestMapping("/signup")
 	public String signup(HttpServletRequest request, Model model) {
+		System.out.println("dd");
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		dao.signup(request.getParameter("id"),request.getParameter("pw"));
@@ -75,6 +77,7 @@ public class HomeController {
 	
 	@RequestMapping("/login_view")
 	public String login_view(Model model) {
+		System.out.println("dd");
 		return "login_view";
 	}
 	
@@ -129,6 +132,7 @@ public class HomeController {
 	
 	@RequestMapping("/board_view")
 	public String board_view(Model model) {
+		System.out.println("dd");
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		ArrayList<ContentDto> dtos = dao.list();
@@ -138,11 +142,13 @@ public class HomeController {
 	
 	@RequestMapping("/write_view")
 	public String write_view(Model model) {	
+		System.out.println("dd");
 		return "/write_view";
 	}
 	
 	@RequestMapping("/write")
 	public String write(HttpServletRequest request, Model model) {
+		System.out.println("dd");
 		IDao dao = sqlSession.getMapper(IDao.class);
 		System.out.println("11??");
 		dao.write(request.getParameter("Writer"), request.getParameter("Title"), request.getParameter("Content"));
@@ -152,6 +158,7 @@ public class HomeController {
 	
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest request, Model model) {
+		System.out.println("dd");
 		IDao dao = sqlSession.getMapper(IDao.class);
 		dao.delete();
 		return "/board_view";
@@ -159,6 +166,7 @@ public class HomeController {
 	
 	@RequestMapping("/content_view")
 	public String content_view(HttpServletRequest request, Model model) {
+		System.out.println("dd");
 		IDao dao = sqlSession.getMapper(IDao.class);
 		ContentDto dto = null;
 		model.addAttribute("list", request.getParameter("num"));

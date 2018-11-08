@@ -50,7 +50,7 @@
 </ul>
 
 <c:forEach items="${login}" var="dto">
-	<p>${dto.id}</p>님 환영합니다.
+	<p>${dto.id}</p>님 환영합니다.....///////////
 	<c:set var="id" value="${dto.id}" />
 	<p>${id}</p>
 
